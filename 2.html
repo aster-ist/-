@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康餐探 - 智能外卖平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+        }
+        
+        .temperature-indicator {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .live-kitchen {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .live-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #ef4444;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .nutrition-bar {
+            height: 6px;
+            border-radius: 3px;
+            margin-top: 4px;
+        }
+        
+        .drone-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .blockchain-animation {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blockchain-animation::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: blockchain 2s infinite;
+        }
+        
+        @keyframes blockchain {
+            100% {
+                left: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-utensils text-2xl"></i>
+                    <h1 class="text-2xl font-bold">健康餐探</h1>
+                </div>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="#features" class="hover:text-blue-100 transition">核心功能</a>
+                    <a href="#app" class="hover:text-blue-100 transition">用户端</a>
+                    <a href="#merchant" class="hover:text-blue-100 transition">商家端</a>
+                    <a href="#safety" class="hover:text-blue-100 transition">安全保障</a>
+                </nav>
+                <button class="md:hidden text-xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div class="mt-12 mb-8 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">下一代智能外卖体验</h2>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">温度监控 · 营养分析 · 厨房直播 · 无人机配送</p>
+                <div class="flex justify-center space-x-4">
+                    <button class="bg-white text-blue-600 px-6 py-3 rounded-full font-bold hover:bg-blue-50 transition">
+                        <i class="fab fa-apple mr-2"></i> App Store
+                    </button>
+                    <button class="bg-blue-900 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-800 transition">
+                        <i class="fab fa-google-play mr-2"></i> Google Play
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Features Section -->
+        <section id="features" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12">智能餐饮解决方案</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                        <div class="text-blue-600 text-4xl mb-4">
+                            <i class="fas fa-temperature-low"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">智能温控餐盒</h3>
+                        <p class="text-gray-600">实时监测食品温度，通过5G/蓝牙传输数据，确保食品安全送达</p>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                        <div class="text-green-600 text-4xl mb-4">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">营养分析系统</h3>
+                        <p class="text-gray-600">对接华为健康，提供个性化饮食建议和营养摄入追踪</p>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                        <div class="text-red-600 text-4xl mb-4">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">厨房直播</h3>
+                        <p class="text-gray-600">AI监控厨房操作，区块链存档，透明化食品制作过程</p>
+                    </div>
+                    
+                    <!-- Feature 4 -->
+                    <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+                        <div class="text-purple-600 text-4xl mb-4">
+                            <i class="fas fa-drone-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">无人机配送</h3>
+                        <p class="text-gray-600">与大疆合作，实现高效配送，餐盒配备保温消毒系统</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User App Section -->
+        <section id="app" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12">用户端应用</h2>
+                <div class="flex flex-col lg:flex-row items-center gap-8">
+                    <div class="lg:w-1/2">
+                        <div class="relative max-w-sm mx-auto">
+                            <!-- Mockup Phone -->
+                            <div class="bg-gray-800 rounded-3xl p-2 shadow-2xl">
+                                <div class="bg-white rounded-2xl overflow-hidden" style="height: 600px;">
+                                    <!-- App Header -->
+                                    <div class="bg-blue-600 text-white p-4 flex justify-between items-center">
+                                        <i class="fas fa-arrow-left"></i>
+                                        <h3 class="font-bold">健康餐探</h3>
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    
+                                    <!-- App Content -->
+                                    <div class="p-4">
+                                        <!-- Restaurant Info -->
+                                        <div class="flex items-center mb-4">
+                                            <img src="https://via.placeholder.com/60" alt="Restaurant" class="rounded-full w-12 h-12 mr-3">
+                                            <div>
+                                                <h4 class="font-bold">川味小厨</h4>
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                                    4.8 (256)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Temperature Display -->
+                                        <div class="bg-blue-50 rounded-lg p-4 mb-4 flex items-center justify-between">
+                                            <div>
+                                                <p class="text-sm text-gray-500">当前餐品温度</p>
+                                                <p class="font-bold">68°C</p>
+                                            </div>
+                                            <div class="temperature-indicator bg-green-500 text-white">
+                                                68°C
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Live Kitchen -->
+                                        <div class="live-kitchen bg-gray-200 mb-4" style="height: 150px;">
+                                            <div class="live-badge">
+                                                <i class="fas fa-circle mr-1"></i> LIVE
+                                            </div>
+                                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 text-white">
+                                                <p class="text-sm">厨房直播中</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Nutrition Info -->
+                                        <div class="mb-4">
+                                            <h4 class="font-bold mb-2">营养信息</h4>
+                                            <div class="space-y-2">
+                                                <div>
+                                                    <div class="flex justify-between text-sm">
+                                                        <span>热量: 450kcal</span>
+                                                        <span>22%</span>
+                                                    </div>
+                                                    <div class="nutrition-bar bg-red-400 w-1/5"></div>
+                                                </div>
+                                                <div>
+                                                    <div class="flex justify-between text-sm">
+                                                        <span>蛋白质: 25g</span>
+                                                        <span>50%</span>
+                                                    </div>
+                                                    <div class="nutrition-bar bg-blue-400 w-1/2"></div>
+                                                </div>
+                                                <div>
+                                                    <div class="flex justify-between text-sm">
+                                                        <span>碳水化合物: 60g</span>
+                                                        <span>20%</span>
+                                                    </div>
+                                                    <div class="nutrition-bar bg-yellow-400 w-1/5"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Delivery Info -->
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <i class="fas fa-drone-alt mr-2 text-blue-600"></i>
+                                            <span>无人机配送中 - 预计12:45到达</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2 mt-8 lg:mt-0">
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">实时温度监控</h3>
+                                <p class="text-gray-600">我们的智能餐盒配备高精度温度传感器，通过5G/蓝牙实时传输温度数据到您的手机。温度异常会立即通知，确保食品安全。</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">透明厨房直播</h3>
+                                <p class="text-gray-600">观看商家厨房的实时直播，AI系统自动检测异常操作（如不戴手套、交叉污染），所有视频存档于区块链，随时可查。</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">个性化营养分析</h3>
+                                <p class="text-gray-600">对接华为健康数据，根据您的身体状况提供饮食建议。每道菜的营养成分精确计算，帮助您健康饮食。</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">无人机配送</h3>
+                                <p class="text-gray-600">与大疆合作开发的无人机配送系统，餐盒配备保温消毒设备，确保食品在配送过程中保持最佳状态。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Merchant Backend Section -->
+        <section id="merchant" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12">商家后台管理系统</h2>
+                <div class="flex flex-col lg:flex-row items-center gap-8">
+                    <div class="lg:w-1/2 order-2 lg:order-1">
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">菜品管理</h3>
+                                <p class="text-gray-600">轻松上传菜品信息，包括食材、重量、营养成分等。系统自动计算营养数据，为顾客提供透明信息。</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">直播管理</h3>
+                                <p class="text-gray-600">设置厨房摄像头布局，管理直播权限。AI异常检测系统会提醒您潜在的安全问题，提升厨房操作规范。</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">订单分析</h3>
+                                <p class="text-gray-600">详细的销售数据和顾客反馈分析，帮助您优化菜单和运营策略。</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">骑手健康监控</h3>
+                                <p class="text-gray-600">实时查看配送骑手的健康状态，体温心率异常自动报警，确保配送安全。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2 order-1 lg:order-2">
+                        <div class="bg-gray-800 rounded-xl p-4 shadow-2xl max-w-lg mx-auto">
+                            <!-- Dashboard Mockup -->
+                            <div class="bg-gray-100 rounded-lg overflow-hidden">
+                                <!-- Dashboard Header -->
+                                <div class="bg-blue-600 text-white p-3 flex justify-between items-center">
+                                    <h3 class="font-bold">商家后台</h3>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-bell"></i>
+                                        <i class="fas fa-cog"></i>
+                                    </div>
+                                </div>
+                                
+                                <!-- Dashboard Content -->
+                                <div class="p-4">
+                                    <!-- Stats -->
+                                    <div class="grid grid-cols-2 gap-4 mb-6">
+                                        <div class="bg-white p-3 rounded shadow">
+                                            <p class="text-sm text-gray-500">今日订单</p>
+                                            <p class="text-xl font-bold">86</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded shadow">
+                                            <p class="text-sm text-gray-500">收入</p>
+                                            <p class="text-xl font-bold">¥4,320</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Live Feed -->
+                                    <div class="mb-6">
+                                        <h4 class="font-bold mb-2">厨房直播</h4>
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <div class="bg-gray-200 rounded" style="height: 80px;"></div>
+                                            <div class="bg-gray-200 rounded" style="height: 80px;"></div>
+                                        </div>
+                                        <div class="mt-2 text-sm text-gray-500">
+                                            <i class="fas fa-check-circle text-green-500 mr-1"></i>
+                                            AI检测正常
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Recent Orders -->
+                                    <div>
+                                        <h4 class="font-bold mb-2">最新订单</h4>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between items-center p-2 bg-white rounded shadow-sm">
+                                                <div>
+                                                    <p class="font-medium">#ORD-2023-0567</p>
+                                                    <p class="text-sm text-gray-500">水煮鱼 x1, 宫保鸡丁 x2</p>
+                                                </div>
+                                                <div class="text-green-500">
+                                                    <i class="fas fa-drone-alt"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-between items-center p-2 bg-white rounded shadow-sm">
+                                                <div>
+                                                    <p class="font-medium">#ORD-2023-0566</p>
+                                                    <p class="text-sm text-gray-500">麻婆豆腐 x1, 米饭 x2</p>
+                                                </div>
+                                                <div class="text-blue-500">
+                                                    <i class="fas fa-motorcycle"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Safety & Blockchain Section -->
+        <section id="safety" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12">安全与区块链保障</h2>
+                <div class="flex flex-col lg:flex-row items-center gap-8">
+                    <div class="lg:w-1/2">
+                        <div class="bg-gray-800 rounded-xl p-4 shadow-2xl max-w-lg mx-auto">
+                            <div class="bg-gray-100 rounded-lg overflow-hidden">
+                                <!-- Blockchain Header -->
+                                <div class="bg-purple-600 text-white p-3 flex justify-between items-center">
+                                    <h3 class="font-bold">区块链记录</h3>
+                                    <i class="fas fa-link"></i>
+                                </div>
+                                
+                                <!-- Blockchain Content -->
+                                <div class="p-4">
+                                    <div class="blockchain-animation bg-white p-4 rounded mb-4">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <p class="font-medium">温度记录</p>
+                                            <p class="text-sm text-gray-500">2023-06-15 12:30:45</p>
+                                        </div>
+                                        <p class="text-sm">订单 #ORD-2023-0567 温度: 68°C → 65°C</p>
+                                        <p class="text-xs text-gray-500 mt-1">区块哈希: 0x4a3b...f2e1</p>
+                                    </div>
+                                    
+                                    <div class="blockchain-animation bg-white p-4 rounded mb-4">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <p class="font-medium">厨房操作</p>
+                                            <p class="text-sm text-gray-500">2023-06-15 12:15:22</p>
+                                        </div>
+                                        <p class="text-sm">厨师张三佩戴手套处理食材</p>
+                                        <p class="text-xs text-gray-500 mt-1">区块哈希: 0x7c8d...9a0b</p>
+                                    </div>
+                                    
+                                    <div class="blockchain-animation bg-white p-4 rounded">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <p class="font-medium">骑手健康</p>
+                                            <p class="text-sm text-gray-500">2023-06-15 12:05:18</p>
+                                        </div>
+                                        <p class="text-sm">骑手李四体温: 36.5°C 心率: 72bpm</p>
+                                        <p class="text-xs text-gray-500 mt-1">区块哈希: 0x1e2f...3c4d</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2 mt-8 lg:mt-0">
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">区块链技术保障</h3>
+                                <p class="text-gray-600">所有关键数据（温度记录、厨房操作、配送信息）均上链存储，不可篡改。用户可以随时验证食品从制作到配送的全过程。</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">食品安全保险</h3>
+                                <p class="text-gray-600">与保险公司合作推出的专属保险计划，遇到食品安全问题可快速理赔，平台先行赔付保障用户权益。</p>
+                            </div>
+                            
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">隐私保护</h3>
+                                <p class="text-gray-600">采用端到端加密技术保护用户数据，符合GDPR等国际隐私标准。健康数据仅用于营养分析，绝不用于其他用途。</p>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-shield-alt text-green-600 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">全方位安全保障</h4>
+                                    <p class="text-gray-600 text-sm">从食材到配送，每个环节都有严格监控和记录，让您吃得放心。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Drone Delivery Section -->
+        <section class="py-16 gradient-bg text-white">
+            <div class="container mx-auto px-4 text-center">
+                <div class="drone-animation inline-block mb-8">
+                    <i class="fas fa-drone-alt text-6xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold mb-4">无人机配送服务</h2>
+                <p class="text-xl max-w-3xl mx-auto mb-8">与大疆合作开发的无人机配送系统，覆盖城市核心区域。餐盒配备智能温控和紫外线消毒系统，确保食品在配送过程中保持最佳状态。</p>
+                <div class="flex justify-center space-x-4">
+                    <button class="bg-white text-blue-600 px-6 py-3 rounded-full font-bold hover:bg-blue-50 transition">
+                        查看服务区域
+                    </button>
+                    <button class="border border-white text-white px-6 py-3 rounded-full font-bold hover:bg-white/10 transition">
+                        商家申请
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-utensils mr-2"></i> 健康餐探
+                    </h3>
+                    <p class="text-gray-400">下一代智能外卖平台，重新定义餐饮体验。</p>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-weixin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-weibo"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-douyin"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">用户服务</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">下载App</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">常见问题</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">食品安全</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">联系客服</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">商家合作</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">加入平台</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">商家后台</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">设备采购</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">培训支持</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">联系我们</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-map-marker-alt mr-2"></i> 北京市海淀区科技园
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-phone-alt mr-2"></i> 400-888-8888
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-2"></i> contact@smartmeal.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>© 2023 健康餐探 Smart Meal Explorer. 保留所有权利。</p>
+                <div class="flex justify-center space-x-4 mt-4">
+                    <a href="#" class="hover:text-white">隐私政策</a>
+                    <a href="#" class="hover:text-white">用户协议</a>
+                    <a href="#" class="hover:text-white">商家协议</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for temperature indicator
+        const tempIndicator = document.querySelector('.temperature-indicator');
+        if(tempIndicator) {
+            setInterval(() => {
+                const currentTemp = parseInt(tempIndicator.textContent);
+                const newTemp = currentTemp + (Math.random() > 0.5 ? -1 : 1);
+                if(newTemp >= 60 && newTemp <= 75) {
+                    tempIndicator.textContent = newTemp + '°C';
+                    
+                    // Change color based on temperature
+                    if(newTemp >= 70) {
+                        tempIndicator.classList.remove('bg-yellow-500', 'bg-green-500');
+                        tempIndicator.classList.add('bg-red-500');
+                    } else if(newTemp >= 65) {
+                        tempIndicator.classList.remove('bg-red-500', 'bg-green-500');
+                        tempIndicator.classList.add('bg-yellow-500');
+                    } else {
+                        tempIndicator.classList.remove('bg-red-500', 'bg-yellow-500');
+                        tempIndicator.classList.add('bg-green-500');
+                    }
+                }
+            }, 3000);
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
